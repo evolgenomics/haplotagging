@@ -1,2 +1,2 @@
 # haplotagging
-Code and binaries related to processing haplotagging data
+Code and barcode files related to processing haplotagging data
