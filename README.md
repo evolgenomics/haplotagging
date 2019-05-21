@@ -2,9 +2,9 @@
 Code and barcode files related to processing haplotagging data
 
 # Dependencies
-bcl2fastq version v2.18.0 or above.
-bwa version v0.6 or above.
-libgzstream 
+- bcl2fastq version v2.18.0 or above.
+- bwa version v0.6 or above.
+- libgzstream 
 
 # Strategy
 Haplotagging uses a segmented combinatorial barcoding system in the standard Illumina Nextera indexing positions i5 and i7 to preserve linking information. To properly convert the data, our code expects the full set of R1, I1, I2, R2 fastq files, and assigns the barcode based on the look-up table segments A, B, C and D. It then encodes the barcode as comment fields BX, QX and RX (corresponding to barcode, quality strings, and corrected barcode tags, respectively) in a standard set of paired-end fastq files with R1 and R2. 
