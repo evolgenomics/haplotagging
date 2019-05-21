@@ -2,8 +2,8 @@
 Code and barcode files related to processing haplotagging data
 
 # Dependencies
-- bcl2fastq version v2.18.0 or above.
-- bwa version v0.6 or above.
+- bcl2fastq v2.18.0 or above.
+- bwa v0.6 or above.
 - libgzstream 
 
 # Strategy
