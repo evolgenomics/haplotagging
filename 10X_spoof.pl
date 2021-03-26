@@ -14,7 +14,7 @@ $fastq_out=~s/.fastq.gz/.10X_spoofed.fastq.gz/;
 my %barcodes = map {chomp; my @tmp = split; $tmp[0] => $tmp[1]; } `awk '/^A..C..B..D../' top5M.barcodes.GEM.list`;
 my @chars = ("A","C","T","G");
 my $bx = "";
-my $line = -1;
+my $line = 3;
 my $c= "";
 my $lane = "";
 
@@ -23,7 +23,7 @@ open (R1, "zcat $fastq |");
 while (<R1>) {
         $line++;
         #e.g., @ST-J00101:159:HF5TFBBXY:4:1101:30249:1156 BX:Z:A33C26B95D10
-        ($lane, $bx, $c, $line) = ($1, $2, $3, 0) if (/^@.+\:\d+:\S+:(\d):\d+:\d+:\d+\s+BX:Z:(A..(C..)B..D..)/);
+        ($lane, $bx, $c, $line) = ($1, $2, $3, 0) if (/^@.+\:\d+:\S+:(\d):\d+:\d+:\d+\s+BX:Z:(A..(C..)B..D..)/ && $line==4);
         
         if (exists($barcodes{$bx})) {
                if ($line == 0 || $line == 2) {
