@@ -11,7 +11,7 @@ my $fastq=$ARGV[0];
 my $fastq_out=$fastq;
 $fastq_out=~s/.fastq.gz/.10X_spoofed.fastq.gz/;
 
-my %barcodes = map {chomp; my @tmp = split; $tmp[0] => $tmp[1]; } `awk '/^A..C..B..D../' top5M.barcodes.GEM.list2`;
+my %barcodes = map {chomp; my @tmp = split; $tmp[0] => $tmp[1]; } `awk '/^A..C..B..D../' top5M.barcodes.GEM.list`;
 my @chars = ("A","C","T","G");
 my $bx = "";
 my $line = -1;
