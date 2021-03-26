@@ -23,27 +23,27 @@ open (R1, "zcat $fastq |");
 while (<R1>) {
         $line++;
         #e.g., @ST-J00101:159:HF5TFBBXY:4:1101:30249:1156 BX:Z:A33C26B95D10
-        ($lane, $bx, $c, $line) = ($1, $2, $3, 0) if (/^@\:\d+:\S+:(\d):\d+:\d+:\d+\s+BX:Z:(A..(C..)B..D..)/);
+        ($lane, $bx, $c, $line) = ($1, $2, $3, 0) if (/^@.+\:\d+:\S+:(\d):\d+:\d+:\d+\s+BX:Z:(A..(C..)B..D..)/);
         
         if (exists($barcodes{$bx})) {
                if ($line == 0 || $line == 2) {
-                       print;
+                       print OUT;
                } elsif ($line == 1) {
                        my $string;
                        $string .= $chars[rand @chars] for 1..7;
-                       print "$barcodes{$bx}".$string.$_;
+                       print OUT "$barcodes{$bx}".$string.$_;
                } elsif ($line == 3) {
-                       print "".("J" x 23)."$_";
+                       print OUT "".("J" x 23)."$_";
                        $bx = "";
                }
        } else {
                 if ($line == 0 || $line == 2) {
-                        print;
+                        print OUT;
                 } elsif ($line == 1) {
                         my $string;
-                        print "".("N" x 23).$_;
+                        print OUT "".("N" x 23).$_;
                 } elsif ($line == 3) {
-                        print "".("#" x 23).$_;
+                        print OUT "".("#" x 23).$_;
                 }
        }
 }
