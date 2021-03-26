@@ -37,7 +37,7 @@ while (<R1>) {
                        $bx = "";
                }
        } else {
-       if ($line == 0 || $line == 2) {
+                if ($line == 0 || $line == 2) {
                         print;
                 } elsif ($line == 1) {
                         my $string;
