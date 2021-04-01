@@ -28,7 +28,7 @@ if ($verbose ne "") {
 	VERBOSE: while (<R1>) {
    	     $line++;
    	     #e.g., @ST-J00101:159:HF5TFBBXY:4:1101:30249:1156 BX:Z:A33C26B95D10
-   	    ($lane, $bx, $c, $line) = ($1, $2, $3, 0) if (/^@.+\:\d+:\S+:(\d):\d+:\d+:\d+\s+BX:Z:(A..(C..)B..D..)/ && $line==4);
+   	    ($lane, $bx, $c, $line) = ($1, $2, $3, 0) if (/^@.+\:\d+:\S+:(\d):\d+:\d+:\d+.+BX:Z:(A..(C..)B..D..)/ && $line==4);
    	     
 			if (exists($barcodes{$bx})) {
 			   if ($bc_flag < 3) {
@@ -73,7 +73,7 @@ open (R1, "zcat $fastq |");
 while (<R1>) {
         $line++;
         #e.g., @ST-J00101:159:HF5TFBBXY:4:1101:30249:1156 BX:Z:A33C26B95D10
-        ($lane, $bx, $c, $line) = ($1, $2, $3, 0) if (/^@.+\:\d+:\S+:(\d):\d+:\d+:\d+\s+BX:Z:(A..(C..)B..D..)/ && $line==4);
+        ($lane, $bx, $c, $line) = ($1, $2, $3, 0) if (/^@.+\:\d+:\S+:(\d):\d+:\d+:\d+.+BX:Z:(A..(C..)B..D..)/ && $line==4);
         
         if (exists($barcodes{$bx})) {
                if ($line == 0 || $line == 2) {
