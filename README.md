@@ -18,3 +18,10 @@ bcl2fastq --use-bases-mask=Y150,I13,I13,Y149 --create-fastq-for-index-reads -r [
 Here the options --use-bases-mask=Y150,I13,I13,Y149 allows the full use of all 13 positions in the index reads. Note that a single cycle is taken out of R2 to extend the I2 cycle to 13nt.
 
 --create-fastq-for-index-reads is key here to allow our demultiplexing code to see the full, untrimmed barcodes.
+
+# Best Practice Recommendations
+Since around mid-2021, we and others have found concrete advantages to using barcode-first read mapppers like [EMA] (https://github.com/arshajii/ema). Specifically, EMA uses BWA's API to place reads, but does a better job of taking linked-reads (or "read clouds") into account. Please see their repo for details. 
+
+For this reason, we recommend substituting EMA for the read mapping step. To do so, use our script `ema_prep.sh` to pre-process and sort the reads prior to mapping.
+
+While we find EMA to be less polished than BWA and it currently involves additional overheads, we feel strongly that the improved read mapping, especially in complex regions, is well worth you trouble. Please consider adopting this recommendation in your pipeline.
